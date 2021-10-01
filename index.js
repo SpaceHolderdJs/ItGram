@@ -5,6 +5,19 @@ const app = express();
 
 const port = 5000;
 
+app.use(express.json());
+
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
+app.use(express.static(__dirname + "/routes"));
+app.use(express.static("public"));
+
+const mainRoutes = require("./routes/router");
+
 app.use(mainRoutes);
 
 app.listen(port, (err) => {

@@ -1,0 +1,25 @@
+.profile {
+  width: 100%;
+}
+
+.profile .userInfo {
+  width: 50%;
+  height: 90vh;
+}
+
+.profile .userPosts {
+  width: 50%;
+  height: 90vh;
+
+  background: rgb(30, 30, 50);
+}
+
+.profile .avatar {
+  font-size: 250px;
+  color: rgb(50, 50, 70);
+  border-radius: 50%;
+  margin: 10px;
+  border: 5px solid rgb(50, 50, 70);
+  width: 250px;
+  height: 250px;
+}

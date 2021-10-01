@@ -1,0 +1,36 @@
+.header {
+  width: 80%;
+  height: 10vh;
+  background-color: rgb(30, 30, 50);
+  color: white;
+  justify-content: space-between;
+  padding-left: 10%;
+  padding-right: 10%;
+  box-shadow: 0px 0px 10px 3px rgb(30, 30, 50);
+}
+
+.header a,
+.header h1 {
+  margin: 10px;
+  color: white;
+}
+
+.header .linksWrapper {
+  width: 20%;
+}
+
+.header .profileWrapper {
+  width: 40%;
+}
+
+.header button {
+  background-color: rgb(50, 50, 70);
+  color: white;
+  font-size: 15px;
+  transition: 0.3s all;
+  border-radius: 20px;
+  border: none;
+  width: 30%;
+  height: 90%;
+  margin: 10px;
+}

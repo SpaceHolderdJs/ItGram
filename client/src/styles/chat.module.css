@@ -1,0 +1,156 @@
+.chat {
+  width: 100%;
+  background: rgb(50, 50, 70);
+  color: white;
+  height: 90vh;
+}
+
+.chat .sideNav {
+  width: 25%;
+  background: rgb(30, 30, 50);
+  height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0px 0px 10px 2px rgb(30, 30, 50);
+  color: white;
+  overflow-x: hidden;
+}
+
+.chat .createChatButton {
+  width: 100%;
+  align-self: center;
+  margin: 0;
+  position: sticky;
+  top: 0;
+  border-radius: 0;
+  background: rgb(30, 30, 50);
+}
+
+.chat .createChatButton span {
+  margin-left: 10px;
+}
+
+.chat .createChatButton:hover {
+  color: aquamarine;
+}
+
+.chat .main {
+  width: 75%;
+}
+
+.chat .closeIcon {
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.chat input[type="text"] {
+  margin: 10px;
+  width: 40%;
+  align-self: center;
+  background: rgb(30, 30, 50);
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  color: white;
+  padding: 5px;
+}
+
+.chat .userWrapper {
+  width: 100%;
+}
+
+.chat .chatFragment {
+  width: 70%;
+  height: 90vh;
+  overflow-x: hidden;
+}
+
+.chat .chatFragment .chatFragmentHeader {
+  width: 100%;
+  height: 10%;
+  position: sticky;
+  top: 0;
+  background: rgb(30, 30, 50);
+  box-shadow: 0px 0px 30px 5px rgb(30, 30, 50);
+  z-index: 5;
+}
+
+.chat .chatFragment .msgBox {
+  height: 70vh;
+  overflow-y: auto;
+}
+
+.chat .msgRight {
+  align-self: flex-end;
+}
+
+.chat .msgLeft {
+  align-self: flex-start;
+}
+
+.chat .createChat {
+  width: 100%;
+}
+
+.chat .chatFragmentFooter {
+  width: 75%;
+  position: fixed;
+  height: 10vh;
+  top: 90vh;
+  align-items: center;
+  background: rgb(30, 30, 50);
+  justify-content: center;
+  box-shadow: 0px 0px 15px 3px rgb(30, 30, 50);
+}
+
+.chat .message {
+  background-color: rgb(30, 30, 50);
+  border-radius: 20px;
+  margin: 5px;
+  color: white;
+  max-width: 45%;
+  width: fit-content;
+  transition: 0.3s all;
+  align-items: center;
+}
+
+.chat .message .date {
+  align-self: flex-end;
+  transform: translateX(-20px);
+  color: lightgray;
+  font-size: 12px;
+  margin: 0;
+}
+
+.chat .message span {
+  margin-right: 10px;
+}
+
+.chat .message img {
+  margin: 15px;
+}
+
+.chat .message .msgAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid aquamarine;
+  margin: 5px;
+}
+
+.chat .message.processing {
+  opacity: 0.5;
+}
+
+.chat textarea {
+  background: rgb(30, 30, 50);
+  border-radius: 20px;
+  width: 30%;
+  height: 40px;
+  padding: 5px;
+  outline: none;
+  color: white;
+  font-size: 20px;
+  border: none;
+  border: 2px solid rgb(50, 50, 70);
+}

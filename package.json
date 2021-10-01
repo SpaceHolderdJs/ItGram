@@ -4,14 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "node index",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "SpaceHolder",
   "license": "ISC",
   "dependencies": {
+    "cloudinary": "^1.27.0",
+    "concurrently": "^6.2.1",
     "express": "^4.17.1",
     "mongo": "^0.1.0",
-    "mongoose": "^6.0.7"
+    "mongoose": "^6.0.7",
+    "multer": "^1.4.3",
+    "nodemon": "^2.0.12",
+    "three": "^0.133.0"
   }
 }

@@ -1,0 +1,79 @@
+.form {
+  width: 35%;
+  height: auto;
+  background-color: rgb(50, 50, 70);
+  border-radius: 20px;
+  color: white;
+  padding: 10px;
+  animation: append 1s linear 1;
+}
+
+.form .inpWrapper {
+  justify-content: space-between;
+  width: 85%;
+  margin: 10px;
+  font-size: 20px;
+}
+
+.form .inpWrapper:hover input {
+  color: aquamarine;
+  border-color: aquamarine;
+}
+
+.form .inpWrapper:hover span {
+  letter-spacing: 5px;
+  color: aquamarine;
+}
+
+.form .inpWrapper input {
+  width: 60%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid white;
+  outline: none;
+  color: white;
+  font-size: 20px;
+  transition: 0.3s all;
+}
+
+.form .inpWrapper span {
+  transition: 0.3s all;
+}
+
+.form button {
+  background-color: rgb(30, 30, 50);
+  color: white;
+  font-size: 20px;
+  transition: 0.3s all;
+  border-radius: 20px;
+  border: none;
+  width: 30%;
+  margin: 10px;
+}
+
+.form button:hover {
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 20px,
+    black 20px,
+    black 40px
+  );
+}
+
+button.active {
+  background: aquamarine !important;
+  color: rgb(30, 30, 50);
+}
+
+@keyframes append {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

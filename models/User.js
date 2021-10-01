@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
   nickname: {
     type: String,
     required: true,
+    unique: true,
   },
   email: {
     type: String,
@@ -22,8 +23,11 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   registrationDate: {
+    type: Number,
+  },
+  avatar: {
     type: String,
   },
 });
 
-module.exports = mongoose.model("Users", userSchema);
+module.exports = { userModel: mongoose.model("Users", userSchema) };

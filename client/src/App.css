@@ -1,0 +1,27 @@
+button {
+  background-color: rgb(50, 50, 70);
+  color: white;
+  font-size: 15px;
+  transition: 0.3s all;
+  border-radius: 20px;
+  border: none;
+  width: 200px;
+  height: 90%;
+  margin: 10px;
+}
+
+.container {
+  animation: append 0.5s linear 1;
+}
+
+@keyframes append {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(30%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
