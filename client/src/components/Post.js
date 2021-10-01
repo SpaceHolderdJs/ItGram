@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "../styles/post.module.css";
 
 import { useSelector, useDispatch } from "react-redux";
 
 import { Icon } from "@material-ui/core";
 
-const Post = ({ post, isPrev }) => {
+import { Context } from "./Application";
+
+const Post = ({ post, hashSearcher, isPrev, isMsg }) => {
   const {
     _id,
     image,
@@ -16,10 +18,13 @@ const Post = ({ post, isPrev }) => {
     comments,
     postDate,
     filters,
+    hashtags,
   } = post;
 
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
+
+  const setSharePostModal = useContext(Context)?.setSharePostModal || null;
 
   const filterStr = filters
     ? `blur(${filters.blur}px) hue-rotate(${filters["hue-rotate"]}deg) sepia(${filters.sepia}%)`
@@ -62,7 +67,6 @@ const Post = ({ post, isPrev }) => {
           : alert("error")
       );
   };
-  const getComments = () => {};
 
   const date = new Date(postDate);
 
@@ -74,7 +78,23 @@ const Post = ({ post, isPrev }) => {
   const preview = (
     <div
       className={`${styles.preview}`}
-      style={{ background: `url(${image})`, filter: filterStr }}></div>
+      style={{ background: `url(${image})`, filter: filterStr }}
+      onClick={() => dispatch({ type: "INIT_CURR_POST", payload: post })}></div>
+  );
+
+  const msgPost = (
+    <div
+      className={`${styles.prevMsg}`}
+      style={{ background: `url(${image})`, filter: filterStr }}>
+      <div className={`column centered ${styles.actionWrapper}`}>
+        <Icon
+          fontSize="large"
+          className={styles.icon}
+          onClick={() => dispatch({ type: "INIT_CURR_POST", payload: post })}>
+          remove_red_eye
+        </Icon>
+      </div>
+    </div>
   );
 
   const formComment = (
@@ -117,10 +137,27 @@ const Post = ({ post, isPrev }) => {
       </div>
       <img src={image} alt="post" style={{ filter: filterStr }} />
       <p>{title}</p>
+      <div className="row">
+        {hashtags?.length > 0 &&
+          hashtags.map((hash) => (
+            <span onClick={() => hashSearcher(hash)} className={styles.hashs}>
+              #{hash}
+            </span>
+          ))}
+      </div>
+
       <div className={`row centered ${styles.section}`}>
         <span className="row centered">
           <Icon onClick={() => likePost()}>favorite_border</Icon>
           {likes}
+        </span>
+        <span className="row centered">
+          <Icon
+            onClick={() =>
+              setSharePostModal && setSharePostModal({ show: true, post })
+            }>
+            share
+          </Icon>
         </span>
         <span className="row centered">
           <Icon onClick={() => setShowFormComment(!showFormComment)}>
@@ -155,6 +192,8 @@ const Post = ({ post, isPrev }) => {
 
   if (isPrev) {
     return preview;
+  } else if (isMsg) {
+    return msgPost;
   } else {
     return card;
   }

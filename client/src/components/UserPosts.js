@@ -27,6 +27,8 @@ const UserPosts = () => {
     sepia: 0,
   });
 
+  const [hashtags, setHashtags] = useState("");
+
   const createPost = (data) => {
     fetch(`/createPost`, {
       headers: {
@@ -125,6 +127,12 @@ const UserPosts = () => {
         rows="10"
         placeholder="Description..."
         onChange={(e) => setPostTitle(e.target.value)}></textarea>
+      <input
+        type="text"
+        value={hashtags}
+        placeholder="#some#your#hashs..."
+        onChange={(e) => setHashtags(e.target.value)}
+      />
       <button
         onClick={() => {
           createPost({
@@ -133,9 +141,12 @@ const UserPosts = () => {
             title: postTitle,
             image: postImage,
             filters: filtersValues,
+            hashtags: hashtags.split("#"),
           });
+
           setPostImage();
-          setPostTitle();
+          setPostTitle("");
+          setHashtags("");
         }}>
         Public
       </button>

@@ -1,0 +1,29 @@
+.searchForm {
+  background: rgb(30, 30, 50);
+  box-shadow: 0px 0px 15px 3px rgb(30, 30, 50);
+  width: 40%;
+  transition: 0.3s all;
+  position: sticky;
+  top: 0;
+}
+
+.searchForm > input {
+  width: 70%;
+  font-size: 20px;
+  color: lightblue;
+  border: none;
+  border-radius: 20px;
+  background: rgb(30, 30, 50);
+  outline: none;
+  text-shadow: 0px 0px 10px aqua;
+}
+
+.searchForm .hash {
+  font-size: 25px;
+  color: lightslategray;
+  text-shadow: 0px 0px 10px black;
+}
+
+.searchBtn {
+  font-size: 20px;
+}

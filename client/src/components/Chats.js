@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Icon } from "@material-ui/core";
 
 import User from "./systems/User";
+import Post from "./Post";
 
 import styles from "../styles/chat.module.css";
 
@@ -169,6 +170,23 @@ const Chats = () => {
           h = h.length > 1 ? h : "0" + h;
           m = m.length > 1 ? m : "0" + m;
 
+          if (msg.post)
+            return (
+              <div
+                className={`column ${styles.message} ${
+                  currentChat?.members[msg.authorIndx].nickname ===
+                  user.nickname
+                    ? styles.msgRight
+                    : styles.msgLeft
+                } ${msg.processing && styles.processing}`}>
+                <span>{msg.text}</span>
+                <Post post={msg.post} isMsg={true} />
+                <i className={styles.date}>
+                  {h}:{m}
+                </i>
+              </div>
+            );
+
           if (msg.content) {
             return (
               <div
@@ -208,12 +226,13 @@ const Chats = () => {
             );
         })}
       </div>
-      <div className={`row ${styles.chatFragmentFooter}`}>
+      <div className={`row ${styles.chatFragmentFooter} `}>
         <textarea
           type="text"
           value={msgText}
           onChange={(e) => setMsgText(e.target.value)}
           placeholder="Message"
+          className={msgText.length > 0 && styles.textActive}
         />
         <button
           onClick={() => {

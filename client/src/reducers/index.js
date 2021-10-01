@@ -4,12 +4,14 @@ import userReducer from "./user";
 import toastReducer from "./toast";
 import postReducer from "./posts";
 import usersReducer from "./users";
+import currentPostReducer from "./currentPost";
 
 const allReducers = combineReducers({
   user: userReducer,
   toast: toastReducer,
   posts: postReducer,
   users: usersReducer,
+  currentPost: currentPostReducer,
 });
 
 export default allReducers;

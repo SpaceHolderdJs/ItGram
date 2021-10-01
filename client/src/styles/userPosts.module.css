@@ -56,3 +56,11 @@ textarea {
   filter: contrast(0%);
   width: 60%;
 }
+
+input {
+  background: rgb(30, 30, 50);
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  margin: 10px;
+}

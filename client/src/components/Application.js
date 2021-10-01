@@ -8,11 +8,15 @@ import styles from "../styles/application.module.css";
 import Profile from "./Profile";
 import Posts from "./Posts";
 import Chats from "./Chats";
+import CurrentPost from "./systems/CurrentPost";
+import SharePost from "./systems/SharePost";
 
 export const Context = createContext();
 
 const Application = () => {
   const user = useSelector((store) => store.user);
+  const currPost = useSelector((store) => store.currentPost);
+
   const dispatch = useDispatch();
 
   const getPosts = useCallback(() => {
@@ -47,21 +51,57 @@ const Application = () => {
       });
   }, []);
 
+  const sharePost = (chat, post) => {
+    fetch("/sendMsg", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chatId: chat._id,
+        msg: {
+          authorIndx: chat.members.indexOf(
+            chat.members.find((m) => m.nickname === user.nickname)
+          ),
+          text: "Shared post below :",
+          post,
+          date: +new Date(),
+        },
+      }),
+    })
+      .then((response) => response.json())
+      .then((r) => (!r.err ? alert("Sended") : alert("Error")));
+  };
+
   useEffect(() => {
     getPosts();
     getAllUsers();
   }, []);
 
   const [tab, setTab] = useState("profile");
+  const [sharePostModal, setSharePostModal] = useState({
+    show: false,
+    post: null,
+  });
 
   if (!user) return <h1>Login to view profile</h1>;
 
+  if (currPost) return <CurrentPost />;
+
   return (
     <div className={`column ${styles.application}`}>
-      <Context.Provider value={{ updateUser, getPosts }}>
+      <Context.Provider
+        value={{
+          updateUser,
+          getPosts,
+          sharePostModal,
+          setSharePostModal,
+          sharePost,
+        }}>
         {tab === "profile" && <Profile />}
         {tab === "posts" && <Posts />}
         {tab === "chat" && <Chats />}
+        {sharePostModal.show && <SharePost />}
       </Context.Provider>
       <div className={`row centered ${styles.nav}`}>
         <div className={`row centered ${tab === "chat" && styles.active}`}>

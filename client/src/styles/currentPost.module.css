@@ -1,0 +1,21 @@
+.currentPostWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.currentPostWrapper .currentPostHeader {
+  width: 100%;
+  background: rgb(30, 30, 50);
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.currentPostWrapper .currentPostHeader .icon {
+  margin-left: 10px;
+  transition: 0.3s all;
+  cursor: pointer;
+}
+
+.currentPostWrapper .currentPostHeader .icon:hover {
+  color: aquamarine;
+}

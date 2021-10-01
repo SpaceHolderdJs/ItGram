@@ -8,7 +8,9 @@ const User = ({ user }) => {
   return (
     <div className={`row centered ${styles.user}`}>
       {avatar ? (
-        <img src={avatar} alt={nickname} className={`${styles.avatar}`} />
+        <div
+          style={{ background: `url(${avatar})` }}
+          className={`${styles.avatar}`}></div>
       ) : (
         <Icon fontSize="large">person</Icon>
       )}

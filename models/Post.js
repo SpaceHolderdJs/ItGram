@@ -38,6 +38,10 @@ const postSchema = new mongoose.Schema({
   filters: {
     type: Object,
   },
+
+  hashtags: {
+    type: Array,
+  },
 });
 
 module.exports = { postModel: mongoose.model("Posts", postSchema) };

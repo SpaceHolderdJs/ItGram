@@ -112,7 +112,8 @@ router.get("/posts", async (req, res) => {
 });
 
 router.post("/createPost", async (req, res) => {
-  const { userNickname, userAvatar, image, title, filters } = req.body;
+  const { userNickname, userAvatar, image, title, filters, hashtags } =
+    req.body;
   console.log("title", title, userNickname, image);
   try {
     const post = new postModel({
@@ -124,6 +125,7 @@ router.post("/createPost", async (req, res) => {
       likes: 0,
       comments: [],
       filters,
+      hashtags,
     });
 
     await post.save();
