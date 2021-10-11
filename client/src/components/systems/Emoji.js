@@ -10,8 +10,10 @@ const Emoji = ({ sendMessage, currentChat }) => {
 
   const [tab, setTab] = useState("gifs");
 
-  const [gifsArray, setGifsArray] = useState([]);
-  const [sticksArray, setSticksArray] = useState([]);
+  const [gifs, setGifs] = useState({});
+  const [sticks, setSticks] = useState({});
+
+  const [searchVal, setSearchVal] = useState();
 
   const key = "lEvYbXlyviIwbqeJQAT2NzLLrxgzKxeS";
 
@@ -20,7 +22,7 @@ const Emoji = ({ sendMessage, currentChat }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setGifsArray(data.data);
+        setGifs({ ...gifs, popular: data.data });
       });
   };
 
@@ -29,7 +31,27 @@ const Emoji = ({ sendMessage, currentChat }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setSticksArray(data.data);
+        setSticks({ ...sticks, popular: data.data });
+      });
+  };
+
+  const searchGifs = (request) => {
+    fetch(`https://api.giphy.com/v1/gifs/search?q=${request}&api_key=${key}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setGifs({ ...gifs, search: data.data });
+      });
+  };
+
+  const searchStickers = (request) => {
+    fetch(
+      `https://api.giphy.com/v1/stickers/search?q=${request}&api_key=${key}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setSticks({ ...sticks, search: data.data });
       });
   };
 
@@ -40,55 +62,99 @@ const Emoji = ({ sendMessage, currentChat }) => {
 
   const sticksTab = (
     <div className={`row ${styles.tab}`}>
-      {sticksArray.length > 0 &&
-        sticksArray.map((stick) => (
-          <img
-            onClick={() =>
-              sendMessage({
-                chatId: currentChat._id,
-                msg: {
-                  authorIndx: currentChat.members.indexOf(
-                    currentChat.members.find(
-                      (m) => m.nickname === user.nickname
-                    )
-                  ),
-                  content: stick.images.fixed_width_small.url,
-                  date: +new Date(),
-                },
-              })
-            }
-            src={stick.images.fixed_width_small.url}
-            alt="stick"
-            className={styles.gif}
-          />
-        ))}
+      {!searchVal
+        ? sticks.popular?.length > 0 &&
+          sticks.popular.map((stick) => (
+            <img
+              onClick={() =>
+                sendMessage({
+                  chatId: currentChat._id,
+                  msg: {
+                    authorIndx: currentChat.members.indexOf(
+                      currentChat.members.find(
+                        (m) => m.nickname === user.nickname
+                      )
+                    ),
+                    content: stick.images.fixed_width_small.url,
+                    date: +new Date(),
+                  },
+                })
+              }
+              src={stick.images.fixed_width_small.url}
+              alt="stick"
+              className={styles.gif}
+            />
+          ))
+        : sticks.search?.map((stick) => (
+            <img
+              onClick={() =>
+                sendMessage({
+                  chatId: currentChat._id,
+                  msg: {
+                    authorIndx: currentChat.members.indexOf(
+                      currentChat.members.find(
+                        (m) => m.nickname === user.nickname
+                      )
+                    ),
+                    content: stick.images.fixed_width_small.url,
+                    date: +new Date(),
+                  },
+                })
+              }
+              src={stick.images.fixed_width_small.url}
+              alt="stick"
+              className={styles.gif}
+            />
+          ))}
     </div>
   );
 
   const gifsTab = (
     <div className={`row ${styles.tab}`}>
-      {gifsArray.length > 0 &&
-        gifsArray.map((gif) => (
-          <img
-            onClick={() =>
-              sendMessage({
-                chatId: currentChat._id,
-                msg: {
-                  authorIndx: currentChat.members.indexOf(
-                    currentChat.members.find(
-                      (m) => m.nickname === user.nickname
-                    )
-                  ),
-                  content: gif.images.fixed_width_small.url,
-                  date: +new Date(),
-                },
-              })
-            }
-            src={gif.images.fixed_width_small.url}
-            alt="gif"
-            className={styles.gif}
-          />
-        ))}
+      {!searchVal
+        ? gifs.popular?.length > 0 &&
+          gifs.popular.map((gif) => (
+            <img
+              onClick={() =>
+                sendMessage({
+                  chatId: currentChat._id,
+                  msg: {
+                    authorIndx: currentChat.members.indexOf(
+                      currentChat.members.find(
+                        (m) => m.nickname === user.nickname
+                      )
+                    ),
+                    content: gif.images.fixed_width_small.url,
+                    date: +new Date(),
+                  },
+                })
+              }
+              src={gif.images.fixed_width_small.url}
+              alt="gif"
+              className={styles.gif}
+            />
+          ))
+        : gifs.search?.map((gif) => (
+            <img
+              onClick={() =>
+                sendMessage({
+                  chatId: currentChat._id,
+                  msg: {
+                    authorIndx: currentChat.members.indexOf(
+                      currentChat.members.find(
+                        (m) => m.nickname === user.nickname
+                      )
+                    ),
+                    content: gif.images.fixed_width_small.url,
+                    date: +new Date(),
+                  },
+                })
+              }
+              src={gif.images.fixed_width_small.url}
+              alt="gif"
+              className={styles.gif}
+            />
+          ))}
     </div>
   );
 
@@ -101,7 +167,17 @@ const Emoji = ({ sendMessage, currentChat }) => {
         </div>
         <div className={`row centered ${styles.block}`}>
           <Icon>search</Icon>
-          <input type="text" />
+          <input
+            type="text"
+            value={searchVal}
+            onChange={(e) => setSearchVal(e.target.value)}
+          />
+          <button
+            onClick={() =>
+              tab === "gifs" ? searchGifs(searchVal) : searchStickers(searchVal)
+            }>
+            Search
+          </button>
         </div>
       </div>
       {tab === "gifs" && gifsTab}

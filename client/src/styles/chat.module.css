@@ -136,6 +136,8 @@
   border-radius: 50%;
   border: 2px solid aquamarine;
   margin: 5px;
+  background-size: cover !important;
+  background-position: center center !important;
 }
 
 .chat .message.processing {
@@ -157,4 +159,8 @@
 
 .chat .textActive {
   border: 2px solid aquamarine;
+}
+
+.chat .noAvatar {
+  color: rgb(50, 50, 70);
 }

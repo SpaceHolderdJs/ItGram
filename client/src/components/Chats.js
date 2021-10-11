@@ -212,11 +212,19 @@ const Chats = () => {
                     : styles.msgLeft
                 } ${msg.processing && styles.processing}`}>
                 <div className={`row centered`}>
-                  <img
-                    src={currentChat?.members[msg.authorIndx].avatar}
-                    alt="user"
-                    className={styles.msgAvatar}
-                  />
+                  {currentChat?.members[msg.authorIndx].avatar ? (
+                    <div
+                      className={styles.msgAvatar}
+                      style={{
+                        background: `url(${
+                          currentChat?.members[msg.authorIndx].avatar
+                        })`,
+                      }}></div>
+                  ) : (
+                    <Icon fontSize="large" className={styles.noAvatar}>
+                      person
+                    </Icon>
+                  )}
                   <span>{msg.text}</span>
                 </div>
                 <i className={styles.date}>

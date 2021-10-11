@@ -14,7 +14,6 @@ const UserPosts = () => {
 
   const posts = useSelector((store) => store.posts);
   const user = useSelector((store) => store.user);
-  const dispatch = useDispatch();
 
   const [tab, setTab] = useState("posts");
   const [postImage, setPostImage] = useState();
@@ -106,7 +105,7 @@ const UserPosts = () => {
                   <input
                     type="range"
                     min="-10"
-                    max="10"
+                    max="360"
                     value={filtersValues[filter]}
                     onChange={(e) =>
                       setFiltersValues({

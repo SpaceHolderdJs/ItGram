@@ -3,6 +3,8 @@ import styles from "../styles/post.module.css";
 
 import { useSelector, useDispatch } from "react-redux";
 
+import User from "./systems/User";
+
 import { Icon } from "@material-ui/core";
 
 import { Context } from "./Application";
@@ -22,7 +24,11 @@ const Post = ({ post, hashSearcher, isPrev, isMsg }) => {
   } = post;
 
   const user = useSelector((store) => store.user);
+  const users = useSelector((store) => store.users);
+
   const dispatch = useDispatch();
+
+  const postOwner = users.find((user) => user.nickname === userNickname);
 
   const setSharePostModal = useContext(Context)?.setSharePostModal || null;
 
@@ -101,7 +107,9 @@ const Post = ({ post, hashSearcher, isPrev, isMsg }) => {
     <div className={`column ${styles.formComment}`}>
       <div className={`row centered ${styles.section}`}>
         <span className={`row ${styles.contentWrapper}`}>
-          <img src={userAvatar} alt="user" className={`${styles.userAvatar}`} />
+          <div
+            className={styles.userAvatar}
+            style={{ background: `url(${userAvatar})` }}></div>
         </span>
         <textarea
           type="text"
@@ -126,9 +134,8 @@ const Post = ({ post, hashSearcher, isPrev, isMsg }) => {
   const card = (
     <div className={`column ${styles.card}`}>
       <div className={`row centered ${styles.section}`}>
-        <span className={`row ${styles.contentWrapper}`}>
-          <img src={userAvatar} alt="user" className={`${styles.userAvatar}`} />
-          <h3>{userNickname}</h3>
+        <span className={`row ${styles.contentOwnerWrapper}`}>
+          <User user={postOwner} />
         </span>
         <span className="row centered">
           {normalizeDate(date.getDate())}.{normalizeDate(date.getMonth())}.
@@ -172,15 +179,13 @@ const Post = ({ post, hashSearcher, isPrev, isMsg }) => {
           {comments.length > 0 &&
             comments.map((comment) => (
               <div className={`column ${styles.comment}`}>
-                <div className={`row centered ${styles.contentWrapper}`}>
-                  <span className={`row ${styles.contentWrapper}`}>
-                    <img
-                      src={comment.userAvatar}
-                      alt="user"
-                      className={`${styles.userAvatar}`}
-                    />
-                    <h3>{comment.userNickname}</h3>
-                  </span>
+                <div className={`row centered ${styles.contentCommentWrapper}`}>
+                  <div
+                    className={styles.userAvatar}
+                    style={{
+                      background: `url(${comment.userAvatar})`,
+                    }}></div>
+                  <h3>{comment.userNickname}</h3>
                 </div>
                 <p>{comment.title}</p>
               </div>

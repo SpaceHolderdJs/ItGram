@@ -2,6 +2,8 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
+import Userfinder from "./UserFinder";
+
 import styles from "../../styles/header.module.css";
 
 const Header = () => {
@@ -24,8 +26,7 @@ const Header = () => {
     return (
       <header className={`row centered ${styles.header}`}>
         <div className={`row centered ${styles.linksWrapper}`}>
-          <Link to="/main">Main</Link>
-          <Link to="/register">Registration</Link>
+          <Userfinder />
         </div>
         <div className={`row centered ${styles.profileWrapper}`}>
           <h3>

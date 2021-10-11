@@ -1,0 +1,29 @@
+.userFinder {
+  width: 300px;
+  position: fixed;
+  z-index: 7;
+}
+
+.userWrapper {
+  width: 100%;
+}
+
+.userFinder input[type="text"] {
+  border: 1px solid rgb(50, 50, 70);
+  font-size: 20px;
+  width: 100%;
+}
+
+.userFinder .list {
+  width: 300px;
+  position: inherit;
+  top: 60px;
+  height: 400px;
+  background: rgba(30, 30, 50, 0.9);
+  border-radius: 20px;
+  z-index: 7;
+  border: 1px solid aquamarine;
+  overflow-y: auto;
+  overflow-x: hidden;
+  justify-content: flex-start;
+}

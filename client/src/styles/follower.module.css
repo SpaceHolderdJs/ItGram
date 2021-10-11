@@ -1,0 +1,38 @@
+.follower {
+  width: 90%;
+  border-radius: 20px;
+  background: rgb(50, 50, 70);
+  margin: 5px;
+  padding: 10px;
+  align-self: center;
+  box-shadow: inset 0px 0px 15px 5px rgb(30, 30, 50);
+}
+
+.follower .avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid aquamarine;
+}
+
+.follower .divider {
+  width: 2px;
+  height: 100%;
+  border-radius: 20px;
+  margin: 5px;
+  background-color: white;
+}
+
+.follower .header {
+  width: 95%;
+  align-self: center;
+  justify-content: space-between;
+}
+
+.follower h3 {
+  color: aquamarine;
+}
+
+.follower.avaliable {
+  background: linear-gradient(90deg, rgb(50, 50, 70) 60%, aquamarine);
+}

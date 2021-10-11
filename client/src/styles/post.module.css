@@ -6,6 +6,7 @@
   background-size: 90% 70% !important;
   transition: 0.3s all;
   cursor: pointer;
+  border-radius: 20px;
 }
 
 .preview:hover {
@@ -51,6 +52,7 @@
   margin: 10px;
   border-radius: 20px;
   background: rgb(50, 50, 70);
+  box-shadow: inset 0px 0px 15px 5px rgb(30, 30, 50);
 }
 
 .card .section {
@@ -61,18 +63,40 @@
 .card .section span {
   margin: 5px;
 }
+
 .contentWrapper {
   align-items: center;
   padding: 10px;
   height: 40px;
   width: 10%;
   justify-content: space-between;
+  border-radius: 20px;
+}
+
+.contentCommentWrapper {
+  align-items: center;
+  padding: 10px;
+  height: 40px;
+  width: 70%;
+  justify-content: flex-start;
+  border-radius: 20px;
+}
+
+.contentOwnerWrapper {
+  align-items: center;
+  padding: 10px;
+  height: 40px;
+  width: 80%;
+  justify-content: space-between;
+  border-radius: 20px;
 }
 
 .card .userAvatar {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  background-position: center center !important;
+  background-size: cover !important;
   border: 2px solid rgb(50, 50, 70);
 }
 

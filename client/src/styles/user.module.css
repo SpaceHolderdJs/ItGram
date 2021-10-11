@@ -3,18 +3,18 @@
   height: 60px;
   border-radius: 50%;
   background-position: center center !important;
-  background-size: 80% 100% !important;
+  background-size: cover !important;
   border: 2px solid aquamarine;
 }
 
 .user {
   width: 100%;
   justify-content: flex-start;
-  background: rgb(30, 30, 50);
   color: white;
   padding: 5px;
   transition: 0.3s all;
   cursor: pointer;
+  height: 100%;
 }
 
 .user h3,
@@ -24,5 +24,4 @@
 
 .user:hover {
   box-shadow: inset 15px 0 15px -15px aquamarine;
-  background: rgb(50, 50, 70);
 }

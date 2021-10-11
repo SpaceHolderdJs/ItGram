@@ -1,0 +1,17 @@
+.currentProfile {
+  width: 100%;
+  height: 100%;
+}
+
+.currentProfile .header {
+  width: 100%;
+  background: linear-gradient(90deg, rgb(30, 30, 50), rgba(0, 0, 0, 0));
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.currentProfile .header .icon {
+  margin-left: 10px;
+  transition: 0.3s all;
+  cursor: pointer;
+}

@@ -28,6 +28,12 @@ const userSchema = new mongoose.Schema({
   avatar: {
     type: String,
   },
+  gitNickname: {
+    type: String,
+  },
+  stacks: {
+    type: Array,
+  },
 });
 
 module.exports = { userModel: mongoose.model("Users", userSchema) };

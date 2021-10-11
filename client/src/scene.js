@@ -15,22 +15,30 @@ export const initScene = () => {
 
   scene.background = new THREE.Color("rgb(30,30,50)");
 
+  const loader = new THREE.TextureLoader();
+
   document.body.appendChild(renderer.domElement);
+
+  const texture = loader.load("/terrain.jpg");
+  const h = loader.load("/height.png");
 
   const geometry = new THREE.PlaneBufferGeometry(30, 30, 64, 64);
 
   scene.fog = new THREE.Fog("rgb(30,30,50)", 10, 15);
 
   console.log(geometry);
-  for (let i = 0; i < geometry.attributes.position.array.length; i++) {
-    if (i % 2 === 0)
-      geometry.attributes.position.array[i] += Math.random() * 0.4;
-  }
+  // for (let i = 0; i < geometry.attributes.position.array.length; i++) {
+  //   if (i % 2 === 0)
+  //     geometry.attributes.position.array[i] += Math.random() * 0.4;
+  // }
 
   const material = new THREE.MeshStandardMaterial({
     color: "aquamarine",
+    // map: texture,
+    displacementMap: h,
+    displacementScale: 5,
     wireframe: true,
-    displacementScale: 0.6,
+    wireframeLinewidth: 5.3,
   });
 
   const plane = new THREE.Mesh(geometry, material);
@@ -39,7 +47,7 @@ export const initScene = () => {
   scene.add(plane);
 
   const l = new THREE.PointLight("aquamarine");
-  l.position.set(0, 15, 0);
+  l.position.set(0, 5, 0);
   scene.add(l);
 
   const pointLight = new THREE.PointLight("aqua", 5, 5);
@@ -62,6 +70,9 @@ export const initScene = () => {
       1 + (window.innerWidth / 2 - e.pageY) * 0.005,
       -1.5
     );
+
+    plane.material.displacementScale =
+      (e.pageX - window.innerWidth / 2) * 0.0055;
   });
 
   const animate = function () {

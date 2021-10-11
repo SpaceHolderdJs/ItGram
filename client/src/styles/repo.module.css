@@ -1,0 +1,92 @@
+.repo {
+  width: 90%;
+  padding: 10px;
+  border-radius: 20px;
+  background: rgb(50, 50, 70);
+  margin: 5px;
+  align-self: center;
+  box-shadow: inset 0px 0px 15px 5px rgb(30, 30, 50);
+}
+
+.repo .header {
+  width: 95%;
+  align-self: center;
+  justify-content: space-between;
+}
+
+.repo .header img {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+}
+
+.repo h3 {
+  color: aquamarine;
+}
+
+.repo button {
+  align-self: center;
+  width: 30%;
+}
+
+.repo .iconWrapper {
+  justify-content: flex-start;
+}
+
+.repo .langWrapper {
+  width: 50%;
+  justify-content: space-between;
+  align-self: center;
+}
+
+.repo .langWrapper .progress {
+  height: 5px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, blue, aquamarine);
+  box-shadow: 0px 0px 10px 4px rgb(30, 30, 50);
+  margin-right: 10px;
+}
+
+.repo .langIco {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: black;
+  background-position: center center !important;
+  background-size: 230% 150% !important;
+  border: 2px solid rgb(30, 30, 50);
+  box-shadow: 0px 0px 10px 3px rgb(30, 30, 50);
+}
+
+.repo .checker {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  z-index: -1;
+}
+
+.dateWrapper {
+  width: 90%;
+  align-self: center;
+  justify-content: space-between;
+}
+
+.dateWrapper .green {
+  color: lightgreen;
+}
+
+.dateWrapper .orange {
+  color: orange;
+}
+
+.dateWrapper .grey {
+  color: lightgray;
+}
+
+span {
+  align-items: center;
+}
+
+span * {
+  margin: 5px;
+}

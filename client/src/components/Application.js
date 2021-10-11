@@ -10,12 +10,14 @@ import Posts from "./Posts";
 import Chats from "./Chats";
 import CurrentPost from "./systems/CurrentPost";
 import SharePost from "./systems/SharePost";
+import CurrentProfile from "./systems/CurrentProfile";
 
 export const Context = createContext();
 
 const Application = () => {
   const user = useSelector((store) => store.user);
   const currPost = useSelector((store) => store.currentPost);
+  const currProfile = useSelector((store) => store.currentProfile);
 
   const dispatch = useDispatch();
 
@@ -88,6 +90,7 @@ const Application = () => {
 
   if (currPost) return <CurrentPost />;
 
+  if (currProfile) return <CurrentProfile />;
   return (
     <div className={`column ${styles.application}`}>
       <Context.Provider
